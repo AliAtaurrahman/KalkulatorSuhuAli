@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+        max-width: 300px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid black;
+        border-radius: 8px;
+        background: blanchedalmond;
+      }
+      .input {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 8px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+      }
+      #hasil {
+        margin-top: 15px;
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+</head>
+<body>
+    <form>
+      <h2 style="text-align: center">Kalkulator Suhu</h2>
+      <input
+        type="number"
+        id="suhu"
+        placeholder="Masukkan angka suhu"
+        class="input"
+        style="margin-right: 10px;"
+      />
+      <select id="konversi" class="input">
+        <option value="default">Pilih suhu yang ingin dikonversi!</option>
+        <option value="celtofar">Celsius ke Farenheit</option>
+        <option value="fartocel">Farenheit ke Celsius</option>
+        <option value="celtokel">Celsius ke Kelvin</option>
+        <option value="keltocel">Kelvin ke Celsius</option>
+        <option value="fartokel">Farenheit ke Kelvin</option>
+        <option value="keltofar">Kelvin ke Farenheit</option>
+      </select>
+      <button type="button" class="input" onclick="hitung()">Hitung</button>
+      <div id="hasil"></div>
+    </form>
+    <script>
+      function hitung() {
+        let angkasuhu = parseFloat(document.getElementById("suhu").value);
+        let convert = document.getElementById("konversi").value;
+        let hasil;
+        if (isNaN(angkasuhu)) {
+          hasil = "Masukkan angka yang valid!";
+        } else {
+          switch (convert) {
+            case "celtofar":
+              hasil = (angkasuhu * 9/5) + 32;
+              break;
+            case "fartocel":
+              hasil = (angkasuhu - 32) * 5/9;
+              break;
+            case "celtokel":
+              hasil = (angkasuhu) + 273.15;
+              break;
+            case "keltocel":
+              hasil = (angkasuhu) - 273.15;
+              break;
+            case "fartokel":
+              hasil = (angkasuhu - 32) * 5/9 + 273.15;
+              break;
+            case "keltofar":
+                hasil = (angkasuhu - 273.15) * 9/5 + 32;
+                break
+          }
+        }
+        document.getElementById("hasil").textContent = "Hasil: " + hasil;
+      }
+    </script>
+</body>
+</html>
